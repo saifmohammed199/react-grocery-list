@@ -2,34 +2,7 @@ import React, {Component} from 'react';
 import ItemList from '../components/ItemList';
 import styled from 'styled-components';
 import ItemForm from '../components/ItemForm';
-const GroceryItems=[
-    {
-        name:"Tamato",
-        quantity:1,
-        amount:20
-    },
-    {
-        name:"Potato",
-        quantity:1,
-        amount:10
-    },
-    {
-        name:"Onion",
-        quantity:2,
-        amount:25
-    },
-    {
-        name:"Apple",
-        quantity:2,
-        amount:50
-    },
-    {
-        name:"mango",
-        quantity:1,
-        amount:5
-    }
-]
-
+import Loading from '../components/loading/index';
 const Container = styled.div`
 display:flex;
 margin-left:auto;
@@ -51,7 +24,8 @@ class Home extends Component{
     constructor(props){
         super(props);
         this.state={
-            items:GroceryItems
+            items:[],
+            loaded:false
         }
     }
     handleItemPush=(item)=>{
@@ -63,14 +37,22 @@ class Home extends Component{
     })
     }
     render(){
-        const {items}= this.state;
+        const {items,loaded}= this.state;
     return (
         <Container>
             <h1>Grocery List</h1>
+            {!loaded?<Loading/>:
+
+            <div>
             <ItemForm pushItems={this.handleItemPush}/>
             <ItemList items={items}/>
+            </div>}
         </Container>
     )}
+    componentDidMount()
+    {
+    
+    }
 }
 
 export default Home;
