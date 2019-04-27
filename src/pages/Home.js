@@ -3,6 +3,8 @@ import ItemList from '../components/ItemList';
 import styled from 'styled-components';
 import ItemForm from '../components/ItemForm';
 import Loading from '../components/loading/index';
+import axios from 'axios';
+
 const Container = styled.div`
 display:flex;
 margin-left:auto;
@@ -49,9 +51,23 @@ class Home extends Component{
             </div>}
         </Container>
     )}
+    
     componentDidMount()
     {
-    
+        
+     axios.get('http://localhost:3003/api/list')
+     .then(({data})=> {
+                  console.log({ data } );
+                
+
+                  this.setState({
+                    items: data,
+                    loaded: true
+                })
+        })
+        .catch((error) =>{
+            console.log(error);
+        })
     }
 }
 

@@ -10,21 +10,23 @@ const ItemListIndex = ({items}) =>{
             <table>
             <thead>
                 <tr>
+                    <th>Id</th>
                     <th>Item Name</th>
                     <th>Quantity</th>
                     <th>Amount</th>
                 </tr>
             </thead>
             <tbody>
-                {items.map(({name,quantity,amount},index)=>(
+                {items.map(({id,item_name,quantity,amount},index)=>(
                     <tr key={`items-${index}`}>
-                    <td>{name}</td>
+                    <td>{id}</td>
+                    <td>{item_name}</td>
                     <td>{quantity}</td>
                     <td>{amount}</td>
                 </tr>
                 ))}
                 <tr>
-                    <td colSpan="2">Total</td>
+                    <td colSpan="3">Total</td>
                     <td>{total}</td>
                 </tr>
             </tbody>
